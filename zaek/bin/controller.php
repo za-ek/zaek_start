@@ -14,12 +14,18 @@ class CMain extends \zaek\engine\CMain
 
         $conf_dir =__DIR__ . '/../conf/';
         if ($fs = opendir($conf_dir)) {
+            $aFiles = [];
             while (false !== ($file_name = readdir($fs))) {
                 if ( substr($file_name, -8) == '.ini.php' ) {
-                    $this->conf()->addFile($conf_dir . $file_name, 'ini');
+                    $aFiles[] = $file_name;
                 }
             }
             closedir($fs);
+			
+			sort($aFiles);
+			foreach ( $aFiles as $file_name ) {
+				$this->conf()->addFile($conf_dir . $file_name, 'ini');
+			}
         }
 
         // URI
