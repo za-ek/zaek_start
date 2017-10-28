@@ -31,7 +31,8 @@ class CMain extends \zaek\engine\CMain
         // URI
         $this->conf()->push([
             'request' => [
-                'uri' => $_SERVER["REQUEST_URI"] ?? $_SERVER["SCRIPT_NAME"]
+                'uri' => $_SERVER["REQUEST_URI"] ?? $_SERVER["SCRIPT_NAME"],
+		'host' => $_SERVER["SERVER_NAME"]
             ],
             'client' => [
                 'ip' => $_SERVER['REMOTE_ADDR'] ?? $_SERVER['HTTP_X_FORWARDED_FOR'] ?? ''
